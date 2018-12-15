@@ -1,5 +1,16 @@
 import random
 import time
+from kivy.app import App
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.label import Label
+from kivy.uix.button import Button
+
+class AppWindow(BoxLayout):
+    pass
+
+class DnaApp(App):
+    def build(self):
+        return AppWindow()
 
 def input_prompt():
     """ to input the size of DNA sequence to be generated """
@@ -41,12 +52,15 @@ def repeat_prompt():
         pass
     else:
         print("Please enter a valid response (y/n)\n")
-
+        repeat_prompt()
 
 def main():
-    length=input_prompt()
-    generate_sequence(length)
-    repeat_prompt()
+    DnaApp().run()
+
+#def main():
+#    length=input_prompt()
+#    generate_sequence(length)
+#    repeat_prompt()
 
 if __name__=="__main__":
     main()

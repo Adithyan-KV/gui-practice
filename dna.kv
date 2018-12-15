@@ -1,0 +1,17 @@
+#:import utils kivy.utils
+
+<AppWindow>:
+    BoxLayout:
+        Label:
+            bcolor: '#1a191b'
+            canvas.before:
+                Color:
+                    rgb: utils.get_color_from_hex(self.bcolor)
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Button:
+            text:"button"
+            background_normal:''
+            background_color:utils.get_color_from_hex("#1e1d1f")
+            
