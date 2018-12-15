@@ -1,0 +1,2 @@
+The aim of the project is to make a programme complete with GUI for generating random DNA sequences and predicting the amino acids that would result in the protein
+
