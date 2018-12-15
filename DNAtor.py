@@ -1,22 +1,26 @@
 import random
-import matplotlib.pyplot as plt
 import time
 
 def input_prompt():
+    """ to input the size of DNA sequence to be generated """
+
     n=input("how many base pairs would you like to generate?\n")
     try:
         return(int(n))
     except:
         print("Error: Non integer value")
         return(0)
+
 def generate_sequence(length):
+    """generates a DNA sequence using length parameter"""
 
     #possible base pairs in DNA
     bp=['A','T','G','C']
     sequence=""
 
+    #to keep track of the time required to generate each sequence
     t_start=time.time()
-    
+
     for i in range(length):
         index=random.randint(0,3)
         sequence+=bp[index]
@@ -28,6 +32,8 @@ def generate_sequence(length):
     print("Time elapsed: "+ str(time_taken)+'\n')
 
 def repeat_prompt():
+    """to check if the user wants to generate another sequence"""
+
     repeat=input("would you like to try again? (y/n)\n")
     if repeat.lower()=='y':
         main()
@@ -35,7 +41,7 @@ def repeat_prompt():
         pass
     else:
         print("Please enter a valid response (y/n)\n")
-    
+
 
 def main():
     length=input_prompt()
