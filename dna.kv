@@ -3,6 +3,7 @@
 <AppWindow>:
     BoxLayout:
         Label:
+            id:window
             bcolor: '#1a191b'
             canvas.before:
                 Color:
@@ -10,8 +11,23 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-        Button:
-            text:"button"
-            background_normal:''
-            background_color:utils.get_color_from_hex("#1e1d1f")
-            
+            GridLayout:
+                pos:window.pos
+                size:window.size
+                cols:2
+
+                Button:
+                    id:generate_button
+                    seq:'bleh'
+                    text:self.seq
+                    background_normal:''
+                    background_color:utils.get_color_from_hex("#1e1d1f")
+                    on_press:
+                        self.background_color=utils.get_color_from_hex("#111111")
+                    on_press:
+                        self.seq:root.btn_clk_generate()
+                    on_release:
+                        self.background_color=utils.get_color_from_hex("#1e1d1f")
+
+                Label:
+                    text:generate_button.seq

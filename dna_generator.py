@@ -6,7 +6,33 @@ from kivy.uix.label import Label
 from kivy.uix.button import Button
 
 class AppWindow(BoxLayout):
-    pass
+
+    def generate_sequence(self,length):
+        """generates a DNA sequence using length parameter"""
+
+        #possible base pairs in DNA
+        bp=['A','T','G','C']
+        sequence=""
+
+        #to keep track of the time required to generate each sequence
+        t_start=time.time()
+
+        for i in range(length):
+            index=random.randint(0,3)
+            sequence+=bp[index]
+
+        t_end=time.time()
+
+        time_taken=t_end-t_start
+        print(sequence+"\n")
+        print("Time elapsed: "+ str(time_taken)+'\n')
+
+        return sequence
+
+    def btn_clk_generate(self):
+        dna_seq= self.generate_sequence(100)
+        print("Here:"+dna_seq)
+        return(dna_seq)
 
 class DnaApp(App):
     def build(self):
@@ -22,25 +48,7 @@ def input_prompt():
         print("Error: Non integer value")
         return(0)
 
-def generate_sequence(length):
-    """generates a DNA sequence using length parameter"""
 
-    #possible base pairs in DNA
-    bp=['A','T','G','C']
-    sequence=""
-
-    #to keep track of the time required to generate each sequence
-    t_start=time.time()
-
-    for i in range(length):
-        index=random.randint(0,3)
-        sequence+=bp[index]
-
-    t_end=time.time()
-
-    time_taken=t_end-t_start
-    print(sequence+"\n")
-    print("Time elapsed: "+ str(time_taken)+'\n')
 
 def repeat_prompt():
     """to check if the user wants to generate another sequence"""
