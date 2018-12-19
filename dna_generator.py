@@ -8,7 +8,9 @@ from kivy.properties import StringProperty
 
 class AppWindow(BoxLayout):
 
-    dna_seq= StringProperty()
+    output= StringProperty()
+    status_bar=StringProperty()     #for displaying time remaining,errors,succesful completion etc.
+    status_bar_color=StringProperty()   #color of the text in status bar. red for error,green for succes etc.
 
     def generate_sequence(self,length):
         """generates a DNA sequence using length parameter"""
@@ -32,10 +34,15 @@ class AppWindow(BoxLayout):
 
         return sequence
 
-    def btn_clk_generate(self):
-        self.dna_seq= self.generate_sequence(100)
-        print("Here:"+self.dna_seq)
-        return(self.dna_seq)
+    def btn_clk_generate(self,length):
+        try:
+            int(length)
+            self.output= self.generate_sequence(int(length))
+            return(self.output)
+
+        except:
+            self.output="enter an integer value"
+            return(self.output)
 
 class DnaApp(App):
     def build(self):
