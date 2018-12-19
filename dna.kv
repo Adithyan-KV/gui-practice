@@ -34,14 +34,19 @@
                         background_color:utils.get_color_from_hex("#1e1d1f")
 
                         on_press:
-                            self.background_color=utils.get_color_from_hex("#111111")
+                            self.background_color=utils.get_color_from_hex("#111111")  #changing color of button on click
                         on_press:
                             self.seq:root.btn_clk_generate(length_input.text)
                         on_release:
                             self.background_color=utils.get_color_from_hex("#1e1d1f")
 
-                Label:
-                    text:root.output_sequence
-                    text_size:self.size
-                    valign:'middle'
-                    halign:'center'
+                # the scrollable label that displays the output
+                ScrollView:
+                    Label:
+                        text:root.output_sequence
+                        text_size:self.width,None   #horizontal wrapping
+                        size_hint_y:None
+                        height:self.texture_size[1] #making it scrollable
+                        padding:(50,10)
+                        valign:'middle'
+                        halign:'center'
