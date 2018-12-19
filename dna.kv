@@ -18,7 +18,7 @@
 
                 Button:
                     id:generate_button
-                    seq:'bleh'
+                    seq:'Generate'
                     text:self.seq
                     background_normal:''
                     background_color:utils.get_color_from_hex("#1e1d1f")
@@ -30,4 +30,6 @@
                         self.background_color=utils.get_color_from_hex("#1e1d1f")
 
                 Label:
-                    text:generate_button.seq
+                    text:root.dna_seq
+                    text_size:self.size
+                    valign:'middle'

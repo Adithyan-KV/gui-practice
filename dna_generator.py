@@ -4,8 +4,11 @@ from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.button import Button
+from kivy.properties import StringProperty
 
 class AppWindow(BoxLayout):
+
+    dna_seq= StringProperty()
 
     def generate_sequence(self,length):
         """generates a DNA sequence using length parameter"""
@@ -30,9 +33,9 @@ class AppWindow(BoxLayout):
         return sequence
 
     def btn_clk_generate(self):
-        dna_seq= self.generate_sequence(100)
-        print("Here:"+dna_seq)
-        return(dna_seq)
+        self.dna_seq= self.generate_sequence(100)
+        print("Here:"+self.dna_seq)
+        return(self.dna_seq)
 
 class DnaApp(App):
     def build(self):
@@ -47,8 +50,6 @@ def input_prompt():
     except:
         print("Error: Non integer value")
         return(0)
-
-
 
 def repeat_prompt():
     """to check if the user wants to generate another sequence"""
