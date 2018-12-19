@@ -1,3 +1,4 @@
+#:kivy 1.10.1
 #:import utils kivy.utils
 
 <AppWindow>:
@@ -23,18 +24,15 @@
                         rows:2
                         TextInput:
                             id:length_input
-                            text:"Enter length of sequence"
+                            hint_text:"Enter length of sequence (eg:1000)"
                             multiline:False
-
-                        Label:
-                            text:"Blrh"
 
                     Button:
                         id:generate_button
-                        seq:'Generate'
-                        text:self.seq
+                        text:'Generate'
                         background_normal:''
                         background_color:utils.get_color_from_hex("#1e1d1f")
+
                         on_press:
                             self.background_color=utils.get_color_from_hex("#111111")
                         on_press:
@@ -43,6 +41,7 @@
                             self.background_color=utils.get_color_from_hex("#1e1d1f")
 
                 Label:
-                    text:root.output
+                    text:root.output_sequence
                     text_size:self.size
                     valign:'middle'
+                    halign:'center'

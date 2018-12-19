@@ -5,12 +5,11 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.properties import StringProperty
+from kivy.uix.scrollview import ScrollView
 
 class AppWindow(BoxLayout):
 
-    output= StringProperty()
-    status_bar=StringProperty()     #for displaying time remaining,errors,succesful completion etc.
-    status_bar_color=StringProperty()   #color of the text in status bar. red for error,green for succes etc.
+    output_sequence= StringProperty()
 
     def generate_sequence(self,length):
         """generates a DNA sequence using length parameter"""
@@ -22,6 +21,7 @@ class AppWindow(BoxLayout):
         #to keep track of the time required to generate each sequence
         t_start=time.time()
 
+        #generating the random sequence
         for i in range(length):
             index=random.randint(0,3)
             sequence+=bp[index]
@@ -35,19 +35,34 @@ class AppWindow(BoxLayout):
         return sequence
 
     def btn_clk_generate(self,length):
-        try:
-            int(length)
-            self.output= self.generate_sequence(int(length))
-            return(self.output)
 
+        #catching exceptions for non-integer,negative integer and no input seperately
+        try:
+            if length=="":
+                raise TypeError
+            try:
+                int(length)
+                try:
+                    if int(length)<=0:
+                        raise TypeError
+                except:
+                    self.output_sequence="Please enter a positive integer value"
+                    return self.output_sequence
+            except:
+                self.output_sequence="Please enter an integer value"
+                return self.output_sequence
         except:
-            self.output="enter an integer value"
-            return(self.output)
+            self.output_sequence="Please fill up the length of sequence field"
+            return self.output_sequence
+
+        self.output_sequence=self.generate_sequence(int(length))
+
 
 class DnaApp(App):
     def build(self):
         return AppWindow()
 
+#for CLI only
 def input_prompt():
     """ to input the size of DNA sequence to be generated """
 
@@ -58,6 +73,7 @@ def input_prompt():
         print("Error: Non integer value")
         return(0)
 
+#for CLI only
 def repeat_prompt():
     """to check if the user wants to generate another sequence"""
 
