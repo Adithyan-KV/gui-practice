@@ -1,5 +1,6 @@
 import random
 import time
+import pyperclip
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
@@ -56,6 +57,9 @@ class AppWindow(BoxLayout):
             return self.output_sequence
 
         self.output_sequence=self.generate_sequence(int(length))
+
+    def btn_clk_copy(self,sequence):
+         pyperclip.copy(sequence);
 
 
 class DnaApp(App):

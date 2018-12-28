@@ -39,15 +39,16 @@
                         height:40
                         width:self.parent.width*0.4
                         text:'Generate'
-                        background_normal:''
-                        background_color:utils.get_color_from_hex("#6b7475")
-
-                        on_press:
-                            self.background_color=utils.get_color_from_hex("#111111")  #changing color of button on click
+            #            background_normal:''
+            #            background_color:utils.get_color_from_hex("#6b7475")
+            #
+            #            on_press:
+            #                background_down:''
+            #                self.background_color=utils.get_color_from_hex("6b7475")  #changing color of button on click
                         on_press:
                             self.seq:root.btn_clk_generate(length_input.text)
-                        on_release:
-                            self.background_color=utils.get_color_from_hex("#6b7475")
+            #            on_release:
+            #                self.background_color=utils.get_color_from_hex("#6b7475")
 
                 # the scrollable label that displays the output
                 ScrollView:
@@ -60,6 +61,8 @@
                             pos: self.pos
                             size: self.size
                     Label:
+
+                        id:output_label
                         size_hint_x:None
                         width:self.parent.width
                         text:root.output_sequence
@@ -69,3 +72,15 @@
                         padding:(50,10)
                         valign:'middle'
                         halign:'center'
+
+            GridLayout:
+                cols:2
+                width:window.width
+                spacing:(100,0)
+                height:64
+                padding:[window.width*0.1,10]
+                Button:
+                    text:"Copy"
+                    on_press:root.btn_clk_copy(output_label.text)
+                Button:
+                    text:"Save"
