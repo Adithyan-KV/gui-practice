@@ -7,6 +7,7 @@ from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.properties import StringProperty
 from kivy.uix.scrollview import ScrollView
+import os
 
 class AppWindow(BoxLayout):
 
@@ -61,6 +62,10 @@ class AppWindow(BoxLayout):
     def btn_clk_copy(self,sequence):
          pyperclip.copy(sequence);
 
+    def btn_clk_save(self,sequence):
+        fin=open("./saved file/sequence.txt","w")
+        fin.write(sequence)
+        print("file saved")
 
 class DnaApp(App):
     def build(self):
